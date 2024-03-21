@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <>
@@ -9,9 +10,16 @@ const Header = () => {
         />
         <div>
           <ul className="flex  text-lg my-2 p-2">
-            <li className="mr-4">Home </li>
-            <li className="mr-4">About Us </li>
-            <li className="mr-4">Cart</li>
+            <Link to={"/"}>
+              {" "}
+              <li className="mr-4">Home </li>
+            </Link>
+            <Link to={"/about"}>
+              <li className="mr-4">About Us </li>
+            </Link>
+            <Link to={"/cart"}>
+              <li className="mr-4">Cart</li>
+            </Link>
           </ul>
         </div>
       </div>

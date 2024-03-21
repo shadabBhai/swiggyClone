@@ -30,13 +30,13 @@ const Body = () => {
     <h1>Restaurant are not listed</h1>
   ) : (
     <>
-      <div className="flex">
-        <div className="my-4">
+      <div className="flex ml-10">
+        <div className="my-4 ">
           <input
             type="text"
             name=""
             id=""
-            className="border"
+            className="border m-2"
             value={searchText}
             onChange={(e) => setSerachText(e.target.value)}
           />
