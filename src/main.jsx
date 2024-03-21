@@ -6,6 +6,7 @@ import AboutUs from "./components/AboutUs";
 import Cart from "./components/Cart";
 import RestaurantMenu from "./components/RestaurantMenu";
 import Header from "./components/Header";
+import App from "./App";
 import Body from "./components/Body";
 
 const Layout = () => {
@@ -24,7 +25,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: <App />,
       },
       {
         path: "/about",
