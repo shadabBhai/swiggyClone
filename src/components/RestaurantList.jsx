@@ -20,4 +20,16 @@ const RestaurantList = ({ data }) => {
     </>
   );
 };
+
+// eslint-disable-next-line react-refresh/only-export-components
+export const withOfferAt = (RestaurantList) => {
+  return ({ data }) => {
+    <div>
+      <RestaurantList {...data} />
+      <div className="text-center font-serif font-bold">
+        {data?.info?.aggregatedDiscountInfoV3?.subHeader}
+      </div>
+    </div>;
+  };
+};
 export default RestaurantList;

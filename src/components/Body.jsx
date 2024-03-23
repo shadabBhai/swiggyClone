@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import RestaurantList from "./RestaurantList";
+import RestaurantList, { withOfferAt } from "./RestaurantList";
 import { MAIN_PAGE_API } from "../utils/constant";
 
 const Body = () => {
   const [restaurants, setRestaurants] = useState(null);
   const [filteredRestaurants, setFilterRestaurants] = useState(null);
   const [searchText, setSerachText] = useState();
+  const restaurantWithOffer = withOfferAt(RestaurantList);
 
   useEffect(() => {
     fetchData();
@@ -23,6 +24,7 @@ const Body = () => {
       jsonData?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
         ?.restaurants
     );
+    console.log(jsonData);
   };
 
   return restaurants === null ? (
@@ -68,8 +70,10 @@ const Body = () => {
       </div>
       <div className="flex flex-wrap ml-10 ">
         {filteredRestaurants.map((restaurant) => {
-          return (
-            <RestaurantList key={restaurant?.info?.id} data={restaurant} />
+          restaurant.info.aggregatedDiscountInfoV3.subHeader ? (
+            <restaurantWithOffer data={restaurant} />
+          ) : (
+            <RestaurantList data={restaurant} />
           );
         })}
       </div>

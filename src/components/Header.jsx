@@ -3,7 +3,7 @@ const Header = () => {
   return (
     <>
       <div className="flex justify-between bg-cyan-400">
-        <img src="../public/vite.svg" alt="" className="w-16" />
+        <img src="../vite.svg" alt="" className="w-16" />
         <div>
           <ul className="flex  text-lg my-2 p-2">
             <Link to={"/"}>
