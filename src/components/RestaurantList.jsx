@@ -1,25 +1,22 @@
 /* eslint-disable react/prop-types */
+import { Link } from "react-router-dom";
+import { IMAGE_API } from "../utils/constant";
 const RestaurantList = ({ data }) => {
   // console.log(data);
   // console.log(data?.info?.name);
-  const { name, avgRating, cuisines, cloudinaryImageId } = data?.info;
+  const { name, avgRating, cuisines, cloudinaryImageId, id } = data?.info;
   return (
     <>
-      <div className="w-80 bg-cyan-200 m-2 rounded">
-        <div className="flex justify-center align-middle rounded">
-          <img
-            src={
-              "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
-              cloudinaryImageId
-            }
-            alt=""
-            className="h-40"
-          />
+      <Link to={"/restaurantmenu/" + id}>
+        <div className="w-80 bg-cyan-200 m-2 rounded">
+          <div className="flex justify-center align-middle rounded">
+            <img src={IMAGE_API + cloudinaryImageId} alt="" className="h-40" />
+          </div>
+          <div className="text-lg font-bold">{name}</div>
+          <div className="truncate ">{cuisines.join(" ,")}</div>
+          <div>⭐ {avgRating}</div>
         </div>
-        <div className="text-lg font-bold">{name}</div>
-        <div className="truncate ">{cuisines.join(" ,")}</div>
-        <div>{avgRating}</div>
-      </div>
+      </Link>
     </>
   );
 };

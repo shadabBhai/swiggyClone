@@ -1,5 +1,4 @@
 const ItemList = ({ data }) => {
-  console.log(data);
   const { name, description, imageId, price } = data;
   return (
     <div className="flex justify-between border-b-2 border-cyan-600">

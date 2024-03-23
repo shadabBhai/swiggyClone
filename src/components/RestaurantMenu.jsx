@@ -1,18 +1,24 @@
 import { useEffect, useState } from "react";
 import MenuList from "./MenuList";
+import { useParams } from "react-router-dom";
+import { RESTAURANT_MENU_API } from "../utils/constant";
 
 const RestaurantMenu = () => {
   const [restaruantDetails, setRestaurantDetails] = useState();
   const [categories, setCategories] = useState();
+  const [showIndex, setShowIndex] = useState(0);
 
   useEffect(() => {
     fetchData();
   }, []);
+  const resId = useParams();
+  console.log(resId);
 
   const fetchData = async () => {
     const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.8466937&lng=80.94616599999999&restaurantId=416332"
+      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=26.8466937&lng=80.94616599999999&restaurantId=549461"
     );
+
     const jsonData = await data.json();
 
     setRestaurantDetails(jsonData?.data?.cards[0]?.card?.card?.info);
@@ -44,8 +50,15 @@ const RestaurantMenu = () => {
         </div>
       </div>
       <div className="m-4">
-        {categories.map((item) => {
-          return <MenuList key={item?.card?.card?.type} data={item} />;
+        {categories.map((item, index) => {
+          return (
+            <MenuList
+              key={item?.card?.card?.title}
+              data={item}
+              showItems={index === showIndex ? true : false}
+              setShowIndex={() => setShowIndex(index)}
+            />
+          );
         })}
       </div>
     </div>
